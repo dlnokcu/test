@@ -10,17 +10,14 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::get('/','UserController@index');
 
-Route::get('/', 'HomeController@hello');
-Route::group(array('before'=>'guest'),function()
-{
-	Route::get('/user/create','UserController@getCreate');
-	Route::get('/user/login'.'UserController@getLogin');
+Route::get('create', 'UserController@create');
 
-	Route::group(array('before'=>'csrf'),function()
-	{
-		Route::post('user/create','UserController@postCreate');
-		Route::post('user/login','UserController@postLogin');
-	});
+Route::get('test', 'UserController@test');
 
-});
+Route::any('save', 'UserController@save');
+
+Route::get('edit/{id}', 'UserController@edit');
+
+Route::get('update/{id}', 'UserController@update');
