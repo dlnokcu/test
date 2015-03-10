@@ -8,7 +8,7 @@
 <body>
 	<div>
 		{{Form::open(array('autocomplete'=>'off','action' => 'UserController@update','methot' => 'post'))}}
-	<table>
+	<table width="30%">
 		<tr>
 			 <td>{{Form::label('username','Kullanıcı Adı:')}}</td>
 			<td>{{Form::text('username', $user->username)}}</td>

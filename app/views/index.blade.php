@@ -9,36 +9,37 @@
 <body>
 
 <div>
-{{Form::open(array('autocomplete'=>'off','action' => 'UserController@save', 'method'=>'post'))}}
-<table width="30%">
- 
-  <tr>
-         <td>{{Form::label('username','Kullanıcı Adı:')}}</td>
+    @if($users->count())
+      <table width="25%" >
+        <thead>
+          <tr>
+              <th>Username</th>
+              <th>Password</th>
+              <th>User Type</th>
+              <th>Update</th>
+              <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach($users as $user)
+          <tr>
+              <td>{{$user->username}}</td>
+              <td>{{$user->password}}</td>
+              <td>{{$user->user_type}}</td>
 
-       <td>{{Form::text('username')}}</td>   
-  </tr>
+              <td><a href={{ '/edit/' . $user->id}} > Duzenle </a></td>
 
+              {{Form::open(array('method'=>'POST','action' => array('UserController@delete',$user->id)))}}
+              <td>{{Form::submit('delete')}}</td>
+              {{Form::close()}}
 
-   <tr>
-       <td>{{Form::label('password','Şifre:')}}</td>
-
-       <td>{{Form::password('password')}}</td>  
-
-  </tr>
-
-   <tr>
-       <td>{{Form::label('user_type','Kullanıcı Tipi:')}}</td>
-
-       <td>{{Form::text('user_type')}}</td> 
-   </tr>
-  
-  <tr>
-
-      <td>{{Form::submit('Tıkla!')}}</td>
-   
-  </tr>
-  </table>
-{{ Form::close() }}
+          </tr>
+         @endforeach
+        </tbody>
+        <td><a href={{ '/create/'}} > Kullanıcı Ekle </a></td>
+      </table>
+    @endif
 </div>
 </body>
+
 </html>

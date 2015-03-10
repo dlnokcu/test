@@ -21,3 +21,5 @@ Route::any('save', 'UserController@save');
 Route::get('edit/{id}', 'UserController@edit');
 
 Route::post('update', 'UserController@update');
+
+Route::any('delete/{id}','UserController@delete');

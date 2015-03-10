@@ -12,7 +12,9 @@ class UserController extends BaseController
 
 	public function index(){
 
-		return $this->user->get();
+		$users = User::all();
+
+		return View::make('index',['users' => $users]);
 	}
 
 	public function test(){
@@ -22,7 +24,8 @@ class UserController extends BaseController
 
 	public function create()
 	{
-		return View::make('index');
+		return View::make('create');
+		
 	}
 
 	public function save()
@@ -39,7 +42,6 @@ class UserController extends BaseController
 			'user_type'=> $input['user_type'],
 			]);
 
-		
 // );
 		//yonlendir
 
@@ -78,7 +80,7 @@ class UserController extends BaseController
 			return Redirect::back()
 				->withErrors($validation->errors())
             	->withInput();
-		
+	
 		}else{ 
 
 				/* Alternatif */
@@ -107,6 +109,17 @@ class UserController extends BaseController
 
 		}
 
+	}
+
+	public function delete($id)
+	{
+		$user=User::find($id);
+		$delete=$user->delete();
+
+		if ($delete) {
+
+			return Redirect::to('/');
+		}
 	}
 
 
