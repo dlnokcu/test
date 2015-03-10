@@ -49,9 +49,9 @@ class UserController extends BaseController
 
 	public function edit($id){
 
-		
+		$user=user::find($id);
 
-		return View::make('edit');
+		return View::make('edit', ['user' => $user]);
 
 
 		// aldigin veriyi view a gonder
@@ -64,30 +64,48 @@ class UserController extends BaseController
 
 	public function update(){
 
-		$input =  Input::all();
+		$id = Input::get('id');
 
-		if ($id == 'id') {
-			
-		$this->user->update([
+		$rules = array(
+				'username' => 'required|min:5',
+				'password' => 'required'
+			);
 
-			'username' => $input['username'],
-			'password ' => $input['password'],
-			'user_type' => $input['user_type'],
-			]);
+		$validation = Validator::make(Input::all(), $rules);
 
-		return Redirect::to('/');
-		}
+		if($validation->fails()){
 
-		else {
-			echo "böyle bir kullanıcı yok";
-
-			return Redirect::to('/edit');
-		}
-
- 
+			return Redirect::back()
+				->withErrors($validation->errors())
+            	->withInput();
 		
-		
+		}else{ 
 
+				/* Alternatif */
+
+
+				$this->user->where('id', $id)->update(
+
+					array(
+
+						'username'=>input::get('username'),
+						'password'=>input::get('password'),
+						'user_type'=>input::get('user_type')
+
+					)
+				);
+
+
+				$user = $this->user->find($id);
+
+				$user->username = Input::get('username');
+				$user->password = Input::get('password');
+				$user->user_type = Input::get('user_type');
+				$user->save();
+
+			return Redirect::to('/')->with('mesaj','güncelleme başarılı.');
+
+		}
 
 	}
 

@@ -20,4 +20,4 @@ Route::any('save', 'UserController@save');
 
 Route::get('edit/{id}', 'UserController@edit');
 
-Route::get('update/{id}', 'UserController@update');
+Route::post('update', 'UserController@update');
