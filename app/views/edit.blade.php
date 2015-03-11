@@ -27,7 +27,7 @@
 			{{Form::hidden('id', $user->id)}}
 
 		<tr>
-			<td>{{Form::submit('güncelle')}}</td>
+			<td><button class="link_button" type="submit">Güncelle</button></td>
 		</tr>
 </table>
 {{Form::close()}}

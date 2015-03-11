@@ -11,7 +11,13 @@
 <div>
 {{Form::open(array('autocomplete'=>'off','action' => 'UserController@save', 'method'=>'post'))}}
 <table width="30%">
+<thead>
+  <tr>
+    <th>Kullanıcı Girişi</th>
  
+</thead>
+
+<tbody> 
   <tr>
          <td>{{Form::label('username','Kullanıcı Adı:')}}</td>
 
@@ -34,9 +40,10 @@
   
   <tr>
 
-      <td>{{Form::submit('Tıkla!')}}</td>
+      <td><button class="link_button" type="submit">Ekle</button></td>
    
   </tr>
+  </tbody>
   </table>
 {{ Form::close() }}
 </div>

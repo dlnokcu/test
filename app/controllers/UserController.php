@@ -19,7 +19,7 @@ class UserController extends BaseController
 
 	public function test(){
 
-		return $this->user->where('id', '>', 4)->where('user_type', 1)->get();
+		return $this->user->where('id', '>', 4)->where('user_type', 5)->get();
 	}
 
 	public function create()

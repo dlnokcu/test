@@ -27,16 +27,16 @@
               <td>{{$user->password}}</td>
               <td>{{$user->user_type}}</td>
 
-              <td><a href={{ '/edit/' . $user->id}} > Duzenle </a></td>
+              <td><a class="link_button" href={{ '/edit/' . $user->id}} > Duzenle </a></td>
 
               {{Form::open(array('method'=>'POST','action' => array('UserController@delete',$user->id)))}}
-              <td>{{Form::submit('delete')}}</td>
+              <td><button class="link_button" type="submit">Delete </button></td>
               {{Form::close()}}
 
           </tr>
          @endforeach
         </tbody>
-        <td><a href={{ '/create/'}} > Kullanıcı Ekle </a></td>
+        <td><a class="link_button" href={{ '/create/'}} > Kullanıcı Ekle </a></td>
       </table>
     @endif
 </div>
